@@ -9,7 +9,7 @@ const productRoutes = require('./routes/productRoutes')
 
 
 const app = express()
-const PORT = 5500;
+const PORT = process.env.PORT || 5500;
 
 dotEnv.config();
 mongoose.connect(process.env.MONGO_URI)
@@ -33,7 +33,7 @@ app.listen(PORT,()=>{
 });
 
 
-app.use('/home',(req,res)=>{
+app.use('/',(req,res)=>{
     res.send("<h1>WELCOME TO WOMENS SHOPPING")
 })
 
