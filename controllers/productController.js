@@ -1,16 +1,17 @@
 const Firm = require("../models/Firm");
 const Product = require("../models/Product");
 const multer = require("multer")
+const path = require('path'); // Add this line
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "uploads/"); // Save images in the 'uploads' folder
+        cb(null, 'uploads/'); // Make sure the folder exists
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
+        cb(null, Date.now() + path.extname(file.originalname)); // Fix error
     }
 });
-const upload = multer({storage : storage });
+const upload = multer({ storage: storage });
 
 const addProduct = async(req,res)=>{
     try{

@@ -2,6 +2,8 @@ const Vendor = require('../models/Vendor')
 const  jwt = require('jsonwebtoken')
 const  bcrypt = require('bcryptjs')
 const dotEnv = require('dotenv')
+const mongoose = require('mongoose');
+
 
 dotEnv.config();
 
@@ -60,8 +62,12 @@ const vendorLogin = async(req,res)=>{ //entering email andpassword
 
         const token = jwt.sign({vendorId: vendor._id},secretKey,{expiresIn:"720h"});
 
+
+
         console.log(email,"This is token:",token);
-        res.status(200).json({success:"Login Succesfull",token});
+
+        const vendorId = vendor._id;
+        res.status(200).json({success:"Login Succesfull",token,vendorId});
 
 
     }catch(error){
@@ -85,19 +91,27 @@ const getAllvendors= async(req,res)=>{
 // and if we want firm records we can also right code here
 //write populate('firm') to fetch firm records by vendors
 
-const getVendorById = async (req, res) => {
+const getVendorById = async (req,res)=>{
     const vendorId = req.params.id;
-    try {
-        const vendor = await Vendor.findById(vendorId).populate('firm'); // Fix here
-        if (!vendor) {
-            return res.status(404).json({ error: "Vendor not found" });
+
+    try{
+        const vendor = await Vendor.findById(vendorId).populate('firm');
+        if(!vendor){
+            return res.status(404).json({error:"vendor not found"});
         }
-        res.status(200).json({ vendor });
-    } catch (error) {
-        console.error("Error in getVendorById:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+
+        const vendorFirmId = vendor.firm[0]._id;
+
+        res.status(200).json({vendorId,vendorFirmId,vendor})
+        console.log(vendorFirmId)
+        console.log(vendorId)
+    }catch(error){
+        console.log(error);
+        res.status(500).json({error:"internal server error"});
     }
- };
+} 
+
+
  
 
 

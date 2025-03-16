@@ -16,6 +16,7 @@ const firmSchema = new mongoose.Schema({
             enum: ['Clothing', 'Accessories', 'Footwear', 'Beauty & Self-Care']
         }]
     },
+    
     region: {
         type: [{
             type: String,
