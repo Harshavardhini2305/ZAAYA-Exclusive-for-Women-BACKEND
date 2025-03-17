@@ -16,11 +16,11 @@ const PORT = process.env.PORT || 5500;
 dotEnv.config();
 
 app.use(cors({
-    origin: "https://zaaya.netlify.app", // Change this to your Netlify domain
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization"
-}));
-
+    origin: "https://zaaya.netlify.app", // Allow requests from your Netlify frontend
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Ensure OPTIONS is included
+    allowedHeaders: ["Content-Type", "Authorization", "token"] // Pass an array, not a string
+  }));
+  
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
