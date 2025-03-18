@@ -20,7 +20,7 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Ensure OPTIONS is included
     allowedHeaders: ["Content-Type", "Authorization", "token"] // Pass an array, not a string
   }));
-  
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{

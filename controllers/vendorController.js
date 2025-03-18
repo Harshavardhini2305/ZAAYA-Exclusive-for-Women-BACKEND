@@ -5,6 +5,11 @@ const dotEnv = require('dotenv')
 const mongoose = require('mongoose');
 
 
+
+
+
+
+
 dotEnv.config();
 
 const secretKey = process.env.whatIsYourName
@@ -29,6 +34,7 @@ try{
 
     });
     await newVendor.save();
+
 
     res.status(201).json({message:"vendor registered successfully"})
     console.log("registered")
@@ -61,6 +67,7 @@ const vendorLogin = async(req,res)=>{ //entering email andpassword
         //generating token
 
         const token = jwt.sign({vendorId: vendor._id},secretKey,{expiresIn:"720h"});
+
 
 
 
