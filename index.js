@@ -22,7 +22,7 @@ dotEnv.config();
 //     allowedHeaders: ["Content-Type", "Authorization", "token"] // Pass an array, not a string
 //   }));
 app.use(cors({
-  origin: "https://zaaya.netlify.app", // 
+  origin: "https://zaayaexclusiveforwomen.netlify.app", // 
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "token"]
 }));
