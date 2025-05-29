@@ -21,11 +21,25 @@ dotEnv.config();
 //     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Ensure OPTIONS is included
 //     allowedHeaders: ["Content-Type", "Authorization", "token"] // Pass an array, not a string
 //   }));
+// app.use(cors({
+//   origin: "https://zaaya-exclusive-for-women-vendor-da-phi.vercel.app/", // 
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization", "token"]
+// }));
+const allowedOrigins = ["https://zaaya.netlify.app"];
+
 app.use(cors({
-  origin: "https://zaaya-exclusive-for-women-vendor-da-phi.vercel.app/", // 
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "token"]
 }));
+
 
 
 mongoose.connect(process.env.MONGO_URI)
