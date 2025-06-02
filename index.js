@@ -25,8 +25,12 @@ dotEnv.config();
 //   origin: "https://zaaya-exclusive-for-women-vendor-da-phi.vercel.app/", // 
 //   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 //   allowedHeaders: ["Content-Type", "Authorization", "token"]
+
+
 // }));
-// const allowedOrigins = ["https://zaaya.netlify.app"];
+
+
+const allowedOrigins = ["https://zaaya.netlify.app"];
 
 app.use(cors({
   origin: function (origin, callback) {
