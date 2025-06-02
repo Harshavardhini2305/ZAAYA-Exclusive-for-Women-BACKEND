@@ -26,7 +26,7 @@ dotEnv.config();
 //   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 //   allowedHeaders: ["Content-Type", "Authorization", "token"]
 // }));
-// const allowedOrigins = ["https://zaaya.netlify.app"];
+const allowedOrigins = ["https://zaaya.netlify.app"];
 
 app.use(cors({
   origin: function (origin, callback) {
